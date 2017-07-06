@@ -83,7 +83,7 @@
     </p>
   <p class="article-time">
     <time datetime="2017-06-28T09:40:33.000Z" itemprop="datePublished">2017-06-28</time>
-    更新日期:<time datetime="2017-07-06T03:29:55.000Z" itemprop="dateModified">2017-07-06</time>
+    更新日期:<time datetime="2017-07-06T03:33:36.000Z" itemprop="dateModified">2017-07-06</time>
     
   </p>
 </header>
@@ -104,7 +104,7 @@
 <li><strong>tools：</strong>主要有四个python文件，数据集抽样(subset)，参数选优(grid)，集成测试(easy)，数据检查(checkdata)；</li>
 <li><strong>windows：</strong>包含在windows下运行的程序(由于自己使用mac和linux系统，不介绍windows)。</li>
 </ol>
-<p>&#160; &#160; &#160; &#160; 其它.h和.cpp文件都是程序源码，可以编程出相应的可执行文件。其中最重要的是svm.h和svm.cpp文件，svm-predict.c、svm-scale.c和svm-trian.c（svm-toy中的svm-toy.c）都是调用该文件的接口函数，编译后有相应的可执行文件。README和FAQ也是很好的文件，可以看一下。<br><br>&#160; &#160; &#160; &#160; Mac和linux下面编译非常简单，直接在libsvm-3.22目录下make一下就可以了，生成svm-train，svm-scale和svm-predict三个可执行文件。</p>
+<p>&#160; &#160; &#160; &#160; 其它.h和.cpp文件都是程序源码，可以编程出相应的可执行文件。其中最重要的是svm.h和svm.cpp文件，svm-predict.c、svm-scale.c和svm-trian.c（svm-toy中的svm-toy.c）都是调用该文件的接口函数，编译后有相应的可执行文件。README和FAQ也是很好的文件，可以看一下。<br>&#160; &#160; &#160; &#160; Mac和linux下面编译非常简单，直接在libsvm-3.22目录下make一下就可以了，生成svm-train，svm-scale和svm-predict三个可执行文件。</p>
 <h2 id="二-LibSVM简单使用"><a href="#二-LibSVM简单使用" class="headerlink" title="二.LibSVM简单使用"></a>二.LibSVM简单使用</h2><p>&#160; &#160; &#160; &#160; LibSVM的训练非常简单，直接在根目录下执行<code>./svm-train heart_scale train.model</code><br>heart_scale为样本文件<br>train.model为创建的结果文件，保存训练后的结果，可以看到结果：<br>optimization finished, #iter = 162<br>nu = 0.431029<br>obj = -100.877288, rho = 0.424462<br>nSV = 132, nBSV = 107<br>Total nSV = 132<br>&#160; &#160; &#160; &#160; 目录下生成的train.model文件中保存的是训练后的结果，可以用记事本打开，内容如下：<br><br>svm_type c_svc<code>//所选择的svm类型，默认为c_svc</code><br>kernel_type rbf<code>//训练采用的核函数类型，此处为RBF核</code><br>gamma 0.0769231<code>//RBF核的参数r</code><br>nr_class 2<code>//类别数，此处为二分类问题</code><br>total_sv 132<code>//支持向量总个数</code><br>rho 0.424462<code>//判决函数的预置项b</code><br>label 1 -1<code>//原始文件中的类别标识</code><br>nr_sv 64 68<code>//每个类的支持向量个数</code><br>SV<code>//以下为各个类的权重系数及相应的支持向量</code><br>&#160; &#160; &#160; &#160; 其它两个可执行文件svm-scale和svm-predict的用法类似。  </p>
 <h2 id="三-LibSVM使用规范"><a href="#三-LibSVM使用规范" class="headerlink" title="三.LibSVM使用规范"></a>三.LibSVM使用规范</h2><h3 id="1-LibSVM数据格式"><a href="#1-LibSVM数据格式" class="headerlink" title="1.LibSVM数据格式"></a>1.LibSVM数据格式</h3><p>Label 1:value 2:value …<br><strong>Label：</strong>类别标识，比如上面train.model中的<code>1 -1</code>，可以自己随意指导，比如<code>-10 0 15</code>。当然，如果是回归，这是目标值，就要实事求是了。<br><strong>value：</strong>要训练的数据，也就是特征。数据之间以空格隔开。<br>一行数据的格式为：<br><code>-15 1:0.708 2:1056 3:-0.3333</code><br>需要注意的是，如果特征值为0，特征冒号前面的序号可以不连续，如：<br><code>-15 1:0.708 3:-0.3333</code><br>表明第2个特征值为0。从编程的角度来说，这样可以减少内存的使用，提高矩阵的内积运算速度。</p>
 <h3 id="2-svm-scale用法"><a href="#2-svm-scale用法" class="headerlink" title="2.svm-scale用法"></a>2.svm-scale用法</h3><p>&#160; &#160; &#160; &#160; svm-scale是用来对原始数据进行缩放的，范围可以自己定，一般是[0,1]或者[-1,1]。缩放的主要目的是：</p>
@@ -175,14 +175,14 @@
 <li><code>model_file</code>：可选项，要保存的模型文件</li>
 </ul>
 <p>&#160; &#160; &#160; &#160; 默认情况下，只需要提供一个样本文件就可以了，但为了保存模型，还需要提供一个模型文件，如：<code>./svm-train heart_scale train.model</code></p>
-<h3 id="4-svm-predict用法"><a href="#4-svm-predict用法" class="headerlink" title="4.svm-predict用法"></a>4.svm-predict用法</h3><p>&#160; &#160; &#160; &#160; svm-predict 是根据训练得到的模型，对数据集进行预测。<br><br>用法：<code>svm-predict [options] test_fle model_file output_file</code><br>其中，options为操作参数，可选的参数如下：</p>
+<h3 id="4-svm-predict用法"><a href="#4-svm-predict用法" class="headerlink" title="4.svm-predict用法"></a>4.svm-predict用法</h3><p>&#160; &#160; &#160; &#160; svm-predict 是根据训练得到的模型，对数据集进行预测。<br>用法：<code>svm-predict [options] test_fle model_file output_file</code><br>其中，options为操作参数，可选的参数如下：</p>
 <ul>
 <li><code>-b</code> probability_estimates - 是否需要进行概率估计预测，可选值为0或1，默认值为0</li>
 <li><code>model_file</code> - 是有svm-train产生的模型文件</li>
 <li><code>test_file</code> - 是要进行预测的数据文件，要符合LibSVM格式，即使不知道label值，也需要填一个，svm-predict会在output_file中给出正确的label结果，如果知道label的值，机会输出准确率。</li>
 <li><code>output_file</code> - 是svm-predict的输出文件，表示预测的结果。</li>
 </ul>
-<h2 id="四-grid-py和easy-py的使用"><a href="#四-grid-py和easy-py的使用" class="headerlink" title="四.grid.py和easy.py的使用"></a>四.grid.py和easy.py的使用</h2><p>&#160; &#160; &#160; &#160; 在tool文件夹下有四个python脚本用来对参数选优。常用的有easy.py和grid.py两个脚本。直接在根目录下运行：<code>python tools/grid.py heart_scale</code>，就会看到终端的[local]数据，待停止后，最后一行输出为：<code>512.0 0.001953125 84.8148</code>，表示C=512.0，r=0.001953125，交叉验证精度rate=84.8148%，这个结果是最优的。<br><br>&#160; &#160; &#160; &#160; 根目录下回生成两个文件heart_scale.out 和 heart_scale.png，第一个是搜索过程中[local]和最优数据，第二个是gnuplot图像。然后就可以使用最优参数输入到svm-train中进行训练了。<br></p>
+<h2 id="四-grid-py和easy-py的使用"><a href="#四-grid-py和easy-py的使用" class="headerlink" title="四.grid.py和easy.py的使用"></a>四.grid.py和easy.py的使用</h2><p>&#160; &#160; &#160; &#160; 在tool文件夹下有四个python脚本用来对参数选优。常用的有easy.py和grid.py两个脚本。直接在根目录下运行：<code>python tools/grid.py heart_scale</code>，就会看到终端的[local]数据，待停止后，最后一行输出为：<code>512.0 0.001953125 84.8148</code>，表示C=512.0，r=0.001953125，交叉验证精度rate=84.8148%，这个结果是最优的。<br><br>&#160; &#160; &#160; &#160; 根目录下回生成两个文件heart_scale.out 和 heart_scale.png，第一个是搜索过程中[local]和最优数据，第二个是gnuplot图像。然后就可以使用最优参数输入到svm-train中进行训练了。  </p>
 <h2 id="五-用LibSVM做回归"><a href="#五-用LibSVM做回归" class="headerlink" title="五.用LibSVM做回归"></a>五.用LibSVM做回归</h2><p>&#160; &#160; &#160; &#160; 用LibSVM做回归问题，参数<code>-s</code>只能选择<code>2</code>或<code>3</code>。工作流程和做回归非常类似，主要分为以下几步：</p>
 <ol>
 <li>数据预处理<br><code>./svm-scale -l -1 -u 1 -s save_filename trainfile &gt; trainfile_scale</code><br><code>./svm-scale -r save_filename testfile &gt; testfile_scale</code><br>分别对训练数据和测试数据进行处理，处理训练数据时将处理策略保存，处理测试数据时直接将策略载入处理即可。</li>
