@@ -82,7 +82,7 @@
     </p>
   <p class="article-time">
     <time datetime="2017-06-13T10:15:33.000Z" itemprop="datePublished">2017-06-13</time>
-    更新日期:<time datetime="2017-06-14T02:14:28.000Z" itemprop="dateModified">2017-06-14</time>
+    更新日期:<time datetime="2017-07-06T03:42:45.000Z" itemprop="dateModified">2017-07-06</time>
     
   </p>
 </header>
@@ -91,29 +91,14 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Motivation"><span class="toc-number">1.</span> <span class="toc-text">Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络结构"><span class="toc-number">2.</span> <span class="toc-text">网络结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验结果"><span class="toc-number">3.</span> <span class="toc-text">实验结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-number">5.</span> <span class="toc-text">reference</span></a></li></ol>
 		</div>
 		
 		<p>&#160; &#160; &#160; &#160; 本文主要简单介绍一下何凯明的深度学习模型Residual Network，它拿下了2015 ImageNet分类任务的冠军，还赢得了ImageNet的detection，localization以及COCO数据集上的detection和segmentation。</p>
-<p>##Motivation<br>&#160; &#160; &#160; &#160; 作者首先提出一个问题，深度神经网络是不是越深越好？按照我们一般的经验，只要网络没有梯度消失或者梯度爆炸，而且不过拟合，应该是越深越好。但在实际的实验中，网络加深了，准确度反而下降了，这种情况称为degradation。Cifar10上的训练/测试误差，网络从20层增加到56层，error反而上升了。如下图所示:</p>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>&#160; &#160; &#160; &#160; 作者首先提出一个问题，深度神经网络是不是越深越好？按照我们一般的经验，只要网络没有梯度消失或者梯度爆炸，而且不过拟合，应该是越深越好。但在实际的实验中，网络加深了，准确度反而下降了，这种情况称为degradation。Cifar10上的训练/测试误差，网络从20层增加到56层，error反而上升了。如下图所示:</p>
 <p><img src="/Users/yhl/Documents/Workspace/myblog/data/image/resnet/001.png =488x" alt=""></p>
 <p>&#160; &#160; &#160; &#160; 按理说我们有一个shallow net，在不过拟合的情况下再加几层网络这么说也不会比shallow net的结果差，所以degradation说明不是所有的网络都那么容易优化。如果我们加入一个额外的identity mapping层，那么随着网络深度的增加，误差并没有随着增加。也就是说：如果</p>
-<p>##网络结构</p>
-<p>##实验结果</p>
-<p>##Reference</p>
-<p>##reference<br><a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650718798&amp;idx=2&amp;sn=d18431b7d6e352a1001a938d007dec82" target="_blank" rel="external">谷歌开放Inception-ResNet-v2：一种新的图像分类卷积神经网络模型</a></p>
-<p><a href="https://www.52ml.net/20474.html" target="_blank" rel="external">ResNets、HighwayNets、DenseNets：用 TensorFlow 实现超深度神经网络</a></p>
-<p><a href="http://hacker.duanshishi.com/?p=1733" target="_blank" rel="external">MXnet初体验之inception-resnet-v2从Model到Predict</a></p>
-<p><a href="http://www.cnblogs.com/52machinelearning/p/5821591.html" target="_blank" rel="external">Deep Learning回顾#之LeNet、AlexNet、GoogLeNet、VGG、ResNet</a></p>
-<p><a href="http://blog.csdn.net/u014381600/article/details/54233684" target="_blank" rel="external">常用网络模型结构LeNet,AlexNET,VGG,BN-inception,ResNet网络模型简介和资料整理–caffe学习（8）</a></p>
-<p><a href="https://github.com/KaimingHe/deep-residual-networks#models" target="_blank" rel="external">Deep Residual Networks</a></p>
-<p><a href="http://www.jianshu.com/p/b724411571ab" target="_blank" rel="external">ResNet到底深不深？</a></p>
-<p><a href="https://ziyubiti.github.io/2016/11/27/cnnnet/" target="_blank" rel="external">CNN经典网络模型摘要–AlexNet、ZFnet、GoogleNet、VGG、ResNet</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/22071346" target="_blank" rel="external">Deep Residual Networks学习(一)</a></p>
-<p><a href="http://blog.csdn.net/u011534057/article/details/51819968" target="_blank" rel="external">Deep Residual Learning for Image Recognition(ResNet)论文笔记</a></p>
-<p><a href="http://www.jianshu.com/p/1c7668f1dc25" target="_blank" rel="external">ResNet残差网络论文总结</a></p>
-<p><a href="http://blog.csdn.net/mao_feng/article/details/52734438" target="_blank" rel="external">残差resnet网络原理详解</a></p>
-<p><a href="https://www.zhihu.com/question/53224378" target="_blank" rel="external">resnet（残差网络）的F（x）究竟长什么样子？</a></p>
+<h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650718798&amp;idx=2&amp;sn=d18431b7d6e352a1001a938d007dec82" target="_blank" rel="external">谷歌开放Inception-ResNet-v2：一种新的图像分类卷积神经网络模型</a><br><a href="https://www.52ml.net/20474.html" target="_blank" rel="external">ResNets、HighwayNets、DenseNets：用 TensorFlow 实现超深度神经网络</a><br><a href="http://hacker.duanshishi.com/?p=1733" target="_blank" rel="external">MXnet初体验之inception-resnet-v2从Model到Predict</a><br><a href="http://www.cnblogs.com/52machinelearning/p/5821591.html" target="_blank" rel="external">Deep Learning回顾#之LeNet、AlexNet、GoogLeNet、VGG、ResNet</a><br><a href="http://blog.csdn.net/u014381600/article/details/54233684" target="_blank" rel="external">常用网络模型结构LeNet,AlexNET,VGG,BN-inception,ResNet网络模型简介和资料整理–caffe学习（8）</a><br><a href="https://github.com/KaimingHe/deep-residual-networks#models" target="_blank" rel="external">Deep Residual Networks</a><br><a href="http://www.jianshu.com/p/b724411571ab" target="_blank" rel="external">ResNet到底深不深？</a><br><a href="https://ziyubiti.github.io/2016/11/27/cnnnet/" target="_blank" rel="external">CNN经典网络模型摘要–AlexNet、ZFnet、GoogleNet、VGG、ResNet</a><br><a href="https://zhuanlan.zhihu.com/p/22071346" target="_blank" rel="external">Deep Residual Networks学习(一)</a><br><a href="http://blog.csdn.net/u011534057/article/details/51819968" target="_blank" rel="external">Deep Residual Learning for Image Recognition(ResNet)论文笔记</a><br><a href="http://www.jianshu.com/p/1c7668f1dc25" target="_blank" rel="external">ResNet残差网络论文总结</a><br><a href="http://blog.csdn.net/mao_feng/article/details/52734438" target="_blank" rel="external">残差resnet网络原理详解</a><br><a href="https://www.zhihu.com/question/53224378" target="_blank" rel="external">resnet（残差网络）的F（x）究竟长什么样子？</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -138,10 +123,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/06/17/learn-python/" title="Python 学习">
+ <a href="/2017/06/17/learn-python/" title="Python学习">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Python 学习</span>
+  Python学习</span>
 </a>
 </div>
 
@@ -169,7 +154,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Motivation"><span class="toc-number">1.</span> <span class="toc-text">Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络结构"><span class="toc-number">2.</span> <span class="toc-text">网络结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验结果"><span class="toc-number">3.</span> <span class="toc-text">实验结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-number">5.</span> <span class="toc-text">reference</span></a></li></ol>
   </div>
 
 <div id="asidepart">
