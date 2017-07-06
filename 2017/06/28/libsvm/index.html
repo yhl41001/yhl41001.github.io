@@ -83,7 +83,7 @@
     </p>
   <p class="article-time">
     <time datetime="2017-06-28T09:40:33.000Z" itemprop="datePublished">2017-06-28</time>
-    更新日期:<time datetime="2017-07-06T03:33:36.000Z" itemprop="dateModified">2017-07-06</time>
+    更新日期:<time datetime="2017-07-06T03:37:23.000Z" itemprop="dateModified">2017-07-06</time>
     
   </p>
 </header>
@@ -105,7 +105,7 @@
 <li><strong>windows：</strong>包含在windows下运行的程序(由于自己使用mac和linux系统，不介绍windows)。</li>
 </ol>
 <p>&#160; &#160; &#160; &#160; 其它.h和.cpp文件都是程序源码，可以编程出相应的可执行文件。其中最重要的是svm.h和svm.cpp文件，svm-predict.c、svm-scale.c和svm-trian.c（svm-toy中的svm-toy.c）都是调用该文件的接口函数，编译后有相应的可执行文件。README和FAQ也是很好的文件，可以看一下。<br>&#160; &#160; &#160; &#160; Mac和linux下面编译非常简单，直接在libsvm-3.22目录下make一下就可以了，生成svm-train，svm-scale和svm-predict三个可执行文件。</p>
-<h2 id="二-LibSVM简单使用"><a href="#二-LibSVM简单使用" class="headerlink" title="二.LibSVM简单使用"></a>二.LibSVM简单使用</h2><p>&#160; &#160; &#160; &#160; LibSVM的训练非常简单，直接在根目录下执行<code>./svm-train heart_scale train.model</code><br>heart_scale为样本文件<br>train.model为创建的结果文件，保存训练后的结果，可以看到结果：<br>optimization finished, #iter = 162<br>nu = 0.431029<br>obj = -100.877288, rho = 0.424462<br>nSV = 132, nBSV = 107<br>Total nSV = 132<br>&#160; &#160; &#160; &#160; 目录下生成的train.model文件中保存的是训练后的结果，可以用记事本打开，内容如下：<br><br>svm_type c_svc<code>//所选择的svm类型，默认为c_svc</code><br>kernel_type rbf<code>//训练采用的核函数类型，此处为RBF核</code><br>gamma 0.0769231<code>//RBF核的参数r</code><br>nr_class 2<code>//类别数，此处为二分类问题</code><br>total_sv 132<code>//支持向量总个数</code><br>rho 0.424462<code>//判决函数的预置项b</code><br>label 1 -1<code>//原始文件中的类别标识</code><br>nr_sv 64 68<code>//每个类的支持向量个数</code><br>SV<code>//以下为各个类的权重系数及相应的支持向量</code><br>&#160; &#160; &#160; &#160; 其它两个可执行文件svm-scale和svm-predict的用法类似。  </p>
+<h2 id="二-LibSVM简单使用"><a href="#二-LibSVM简单使用" class="headerlink" title="二.LibSVM简单使用"></a>二.LibSVM简单使用</h2><p>&#160; &#160; &#160; &#160; LibSVM的训练非常简单，直接在根目录下执行<code>./svm-train heart_scale train.model</code><br>heart_scale为样本文件<br>train.model为创建的结果文件，保存训练后的结果，可以看到结果：<br>optimization finished, #iter = 162<br>nu = 0.431029<br>obj = -100.877288, rho = 0.424462<br>nSV = 132, nBSV = 107<br>Total nSV = 132<br>&#160; &#160; &#160; &#160; 目录下生成的train.model文件中保存的是训练后的结果，可以用记事本打开，内容如下：<br>svm_type c_svc<code>//所选择的svm类型，默认为c_svc</code><br>kernel_type rbf<code>//训练采用的核函数类型，此处为RBF核</code><br>gamma 0.0769231<code>//RBF核的参数r</code><br>nr_class 2<code>//类别数，此处为二分类问题</code><br>total_sv 132<code>//支持向量总个数</code><br>rho 0.424462<code>//判决函数的预置项b</code><br>label 1 -1<code>//原始文件中的类别标识</code><br>nr_sv 64 68<code>//每个类的支持向量个数</code><br>SV<code>//以下为各个类的权重系数及相应的支持向量</code><br>&#160; &#160; &#160; &#160; 其它两个可执行文件svm-scale和svm-predict的用法类似。  </p>
 <h2 id="三-LibSVM使用规范"><a href="#三-LibSVM使用规范" class="headerlink" title="三.LibSVM使用规范"></a>三.LibSVM使用规范</h2><h3 id="1-LibSVM数据格式"><a href="#1-LibSVM数据格式" class="headerlink" title="1.LibSVM数据格式"></a>1.LibSVM数据格式</h3><p>Label 1:value 2:value …<br><strong>Label：</strong>类别标识，比如上面train.model中的<code>1 -1</code>，可以自己随意指导，比如<code>-10 0 15</code>。当然，如果是回归，这是目标值，就要实事求是了。<br><strong>value：</strong>要训练的数据，也就是特征。数据之间以空格隔开。<br>一行数据的格式为：<br><code>-15 1:0.708 2:1056 3:-0.3333</code><br>需要注意的是，如果特征值为0，特征冒号前面的序号可以不连续，如：<br><code>-15 1:0.708 3:-0.3333</code><br>表明第2个特征值为0。从编程的角度来说，这样可以减少内存的使用，提高矩阵的内积运算速度。</p>
 <h3 id="2-svm-scale用法"><a href="#2-svm-scale用法" class="headerlink" title="2.svm-scale用法"></a>2.svm-scale用法</h3><p>&#160; &#160; &#160; &#160; svm-scale是用来对原始数据进行缩放的，范围可以自己定，一般是[0,1]或者[-1,1]。缩放的主要目的是：</p>
 <ol>
