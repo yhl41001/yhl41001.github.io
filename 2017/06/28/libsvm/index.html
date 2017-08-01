@@ -83,7 +83,7 @@
     </p>
   <p class="article-time">
     <time datetime="2017-06-28T09:40:33.000Z" itemprop="datePublished">2017-06-28</time>
-    更新日期:<time datetime="2017-07-07T11:48:28.000Z" itemprop="dateModified">2017-07-07</time>
+    更新日期:<time datetime="2017-07-07T12:14:29.000Z" itemprop="dateModified">2017-07-07</time>
     
   </p>
 </header>
@@ -124,7 +124,7 @@
 <p>&#160; &#160; &#160; &#160; 默认情况下,只需要输入要缩放的文件就可以了，比如：<code>./svm-scale test.txt</code>。这时，text.txt中的数据就变成[-1,1]之间的数据了。但原来的数据会被覆盖，可以使用重定向来保存到新文件中：<code>./svm-scale test.txt &gt; out.txt</code>。运行之后，文件夹下多出来的out.txt就是规范后的数据。如果想设置数据范围为[0,1]并保存规则为text.range文件：<code>./svm-scale -l 0 -u 1 -s test.range test.txt &gt; out.txt</code>。这时目录下多了一个test.range文件，下次可以用 <code>-r test.range</code>来载入。</p>
 <h3 id="3-svm-train用法"><a href="#3-svm-train用法" class="headerlink" title="3.svm-train用法"></a>3.svm-train用法</h3><p>&#160; &#160; &#160; &#160; svm-train是用来对训练数据集进行训练，并且可以获得SVM模型。<br>用法：<code>svm-train [options] train_set_file [model_file]</code><br>其中，options为操作参数，可用的选项和表示的含义如下：</p>
 <ul>
-<li><code>-s</code>设置svm类型：</li>
+<li><code>-s</code>设置svm类型，可选参数如下：</li>
 <li><ul>
 <li>0 - C-SVC</li>
 </ul>
@@ -145,7 +145,7 @@
 <li>4 - n-SVR</li>
 </ul>
 </li>
-<li><code>-t</code>设置核函数类型，默认值为2：</li>
+<li><code>-t</code>设置核函数类型，默认值为2，可选参数如下：</li>
 <li><ul>
 <li>0 - 线性核：$$u^{\prime} v$$</li>
 </ul>
